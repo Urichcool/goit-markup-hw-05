@@ -10,6 +10,7 @@
   --secondary-white-color: #f5f4fa;
   --card-set-gap: 30px;
   --icon-color: #AFB1B8;
+  --background-card-color:rgba(33, 150, 243, 0.9);
 }
 
 body {
@@ -314,6 +315,11 @@ fill: currentColor;
   display: flex;
 }
 
+.activites-list-item{
+  position: relative;
+}
+
+
 .activites-list-item + .activites-list-item{
   margin-left: 30px;
 }
@@ -328,6 +334,25 @@ fill: currentColor;
   font-size: 36px;
   line-height: 1.2;
   letter-spacing: 0.03em;
+}
+
+.activites-text{
+  color: var(--primary-white-color);
+  font-weight: 700;
+font-size: 14px;
+line-height: 1.15;
+text-align: center;
+letter-spacing: 0.03em;
+text-transform: uppercase;
+position: absolute;
+bottom: 0;
+padding-top: 27px;
+padding-bottom: 27px;
+width: 100%;
+background-image: linear-gradient(rgba(47, 48, 58, 0.8),
+ rgba(47, 48, 58, 0.8));
+
+
 }
 
 /* crew */
@@ -602,6 +627,27 @@ background-image: linear-gradient( to right,
   fill: currentColor;
 }
 
+/* backdrop, modal */
+
+.backdrop{
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 528px;
+  min-height: 581px;
+  background-color: var(--primary-bg-color);
+  
+}
 
 
 /* Portfolio */
@@ -644,11 +690,21 @@ background-image: linear-gradient( to right,
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+
 .card-set {
   display: flex;
   flex-wrap: wrap;
   margin-left: calc(-1 * var(--card-set-gap));
   margin-top: calc(-1 * var(--card-set-gap));
+}
+
+.card-set-link:hover ,
+.card-set-link:focus{
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+
+.card-set-link:hover .card-overlay{
+  opacity: 1;
 }
 
 .card-set-item {
@@ -657,10 +713,43 @@ background-image: linear-gradient( to right,
   margin-left: var(--card-set-gap);
 }
 
-.card-set-link:hover,
-.card-set-link:focus{
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
+.card-set-link:hover .card-thumb::before{
+  opacity: 1;
 }
+
+.card-thumb{
+  position: relative;
+  
+}
+
+.card-thumb::before{
+  position: absolute;
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background-color: var(--background-card-color);
+
+}
+
+.card-overlay{
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.card-text-overlay{
+  color:var(--primary-white-color);
+font-size: 18px;
+line-height: 1.55;
+letter-spacing: 0.03em;
+min-width: 322px;
+}
+
 
 .card-content{
     padding: 20px 24px;
