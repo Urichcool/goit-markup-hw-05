@@ -11,6 +11,8 @@
   --card-set-gap: 30px;
   --icon-color: #AFB1B8;
   --background-card-color:rgba(33, 150, 243, 0.9);
+  --transition-duration: 250ms;
+  --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
@@ -97,6 +99,9 @@ p {
   font-size: 26px;
   line-height: 1.2;
   letter-spacing: 0.03em;
+  transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .header-logo:hover,
@@ -120,8 +125,9 @@ p {
 
 .site-nav .header-link {
   display: block;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+
 
   color: var(--title-text-color);
 
@@ -130,9 +136,15 @@ p {
   font-size: 14px;
   line-height: 1.2;
   letter-spacing: 0.02em;
+   transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
+
+
 .current {
+  position: relative;
   color: var(--accent-color);
   font-weight: 500;
   font-size: 14px;
@@ -140,8 +152,21 @@ p {
   letter-spacing: 0.02em;
   text-decoration: none;
   display: block;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.current::after{
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+display: block;
+width: 100%;
+height: 4px;
+border-radius: 2px;
+background-color: var(--accent-color);
+
 }
 
 .site-nav .header-link:hover,
@@ -187,6 +212,9 @@ fill: currentColor;
   line-height: 1.2;
   letter-spacing: 0.02em;
   display: flex;
+   transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .header-contacts .header-link:hover,
@@ -245,11 +273,13 @@ fill: currentColor;
   letter-spacing: 0.06em;
   cursor: pointer;
   border: none;
+   transition-property:background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .hero-button:hover,
 .hero-button:focus {
-  color: var(--primary-white-color);
   background-color: #188CE8;
 }
 
@@ -431,6 +461,9 @@ justify-content: center;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
+   transition-property:background-color, color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
   
   
 }
@@ -492,6 +525,9 @@ height: 92px;
   border: 1px solid var(--icon-color) ;
   border-radius: 4px;
   color: var(--icon-color);
+   transition-property: color, border-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
   
 
 }
@@ -554,6 +590,9 @@ border-color: var(--accent-color);
   line-height: 1.7;
   letter-spacing: 0.03em;
   display: block;
+   transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .footer-adress:hover,
@@ -574,6 +613,10 @@ border-color: var(--accent-color);
   line-height: 1.7;
   letter-spacing: 0.03em;
   display: block;
+   transition-property: color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+  
 }
 
 
@@ -613,7 +656,10 @@ border-radius: 50%;
 color: var(--primary-white-color);
 background-image: linear-gradient( to right,
   rgba(255, 255, 255, 0.1),
-  rgba(255, 255, 255, 0.1))
+  rgba(255, 255, 255, 0.1));
+   transition-property: background-color;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
 }
 
 .socials-link:hover,
@@ -636,16 +682,50 @@ background-image: linear-gradient( to right,
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms var(--transition-timing-function);
+}
+
+.backdrop.is-hidden{
+  opacity: 0;
+  pointer-events: none;
+}
+
+.backdrop.is-hidden .modal{
+  transform: translate(-50%, -50%) scale(0.9);
 }
 
 .modal{
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   min-width: 528px;
   min-height: 581px;
   background-color: var(--primary-bg-color);
+  transition: transform 250ms var(--transition-timing-function);
+  
+}
+
+.modal-icon{
+  width: 11px;
+  height: 11px;
+}
+
+.modal-button{
+  position: fixed;
+  right:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 8px;
+  margin-right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--primary-bg-color);
+  cursor: pointer;
   
 }
 
@@ -680,6 +760,9 @@ background-image: linear-gradient( to right,
   line-height: 1.6;
   letter-spacing: 0.03em;
   cursor: pointer;
+   transition-property: color, background-color, filter;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
   
 }
 
@@ -703,9 +786,6 @@ background-image: linear-gradient( to right,
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 }
 
-.card-set-link:hover .card-overlay{
-  opacity: 1;
-}
 
 .card-set-item {
   flex-basis: calc(100% / 3 - var(--card-set-gap));
@@ -713,28 +793,29 @@ background-image: linear-gradient( to right,
   margin-left: var(--card-set-gap);
 }
 
-.card-set-link:hover .card-thumb::before{
-  opacity: 1;
+.card-set-link:hover .card-animation{
+  transform: translateY(0);
 }
 
 .card-thumb{
   position: relative;
+  overflow: hidden;
   
 }
 
-.card-thumb::before{
+.card-animation{
+transform: translateY(100%);
   position: absolute;
-  content: "";
-  display: inline-block;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0;
   background-color: var(--background-card-color);
-
+  transition: transform 250ms var(--transition-timing-function);
 }
 
 .card-overlay{
-  opacity: 0;
+  
   position: absolute;
   top: 50%;
   left: 50%;
@@ -761,6 +842,10 @@ min-width: 322px;
 .card-set-link{
   text-decoration: none;
   display: block;
+  transition-property:box-shadow;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: var(--transition-timing-function);
+
 }
 
 
