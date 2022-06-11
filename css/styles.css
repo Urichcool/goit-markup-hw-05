@@ -786,13 +786,12 @@ background-image: linear-gradient( to right,
 }
 
 
-.card-set-link:hover .card-animation{
-  transform: translateY(0);
-}
-
+.card-set-link:hover .card-animation,
 .card-set-link:focus .card-animation{
   transform: translateY(0);
 }
+
+
 
 .card-set-link:hover,
 .card-set-link:focus {
